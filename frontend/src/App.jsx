@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard";
 // import NotFound from "./pages/NotFound";
 
 // guards / shared UI
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 // global styles for auth screens (optional)
 import "./styles/auth.css";

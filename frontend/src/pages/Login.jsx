@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../api.js";
 import AuthIllustration from "../components/AuthIllustration";
 import "../styles/auth.css";
 
@@ -18,7 +18,7 @@ export default function Login() {
     setMsg({});
     setLoading(true);
     try {
-      const { data } = await axios.post("/api/auth/login", form);
+      const { data } = await API.post("/auth/login", form);
       localStorage.setItem("token", data.token);
       setMsg({ type: "success", text: "Signed in successfully." });
       navigate("/"); // change to your dashboard route

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../api";
 import AuthIllustration from "../components/AuthIllustration";
 import "../styles/auth.css";
 
@@ -19,7 +19,7 @@ export default function ResetPassword() {
     setMsg({});
     setLoading(true);
     try {
-      await axios.post(`/api/auth/reset-password/${token}`, { password });
+      await API.post(`/auth/reset-password/${token}`, { password });
       setMsg({
         type: "success",
         text: "Password updated! Redirecting to Sign in...",

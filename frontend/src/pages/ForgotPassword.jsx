@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import API from "../api";
 import AuthIllustration from "../components/AuthIllustration";
 import "../styles/auth.css";
 
@@ -14,7 +14,7 @@ export default function ForgotPassword() {
     setMsg({});
     setLoading(true);
     try {
-      await axios.post("/api/auth/forgot-password", { email });
+      await API.post("/auth/forgot-password", { email });
       setMsg({ type: "success", text: "Reset link sent! Check your email." });
     } catch (err) {
       const text = err?.response?.data?.msg || "Unable to send email";
