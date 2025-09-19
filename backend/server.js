@@ -19,6 +19,7 @@ const allowedOrigins = [
   "http://localhost:4000", // your current frontend
   "http://localhost:3000", // keep if you sometimes use CRA
   "http://localhost:5173", // keep if you sometimes use Vite default
+  "https://loquacious-marshmallow-79760d.netlify.app/",
 ];
 
 app.use(
