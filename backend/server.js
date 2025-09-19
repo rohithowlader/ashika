@@ -8,6 +8,7 @@ const { connectDB } = require("./src/config/db");
 const authRoutes = require("./src/routes/auth.routes");
 const { notFound, errorHandler } = require("./src/middleware/errorHandler");
 const ledgerRoutes = require("./src/routes/ledger.routes");
+const clientRoutes = require("./src/routes/client.routes");
 const cors = require("cors");
 const app = express();
 
@@ -51,6 +52,7 @@ app.use(limiter);
 // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/ledger", ledgerRoutes);
+app.use("/api/client", clientRoutes);
 
 // health
 app.get("/health", (_req, res) => res.json({ ok: true }));

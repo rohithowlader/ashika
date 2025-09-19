@@ -1,28 +1,30 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-// pages
+// auth pages (yours)
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+
 import Dashboard from "./pages/Dashboard";
-// import NotFound from "./pages/NotFound";
+import RevenueLedgerList from "./pages/RevenueLedgerList";
+import RevenueLedgerCreate from "./pages/RevenueLedgerCreate";
+import ClientDetails from "./pages/ClientDetails";
+import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-// guards / shared UI
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-
-// global styles for auth screens (optional)
+import "./styles/ledger.css";
 import "./styles/auth.css";
 
 export default function App() {
   return (
     <Routes>
-      {/* Public auth routes */}
+      {/* public */}
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-      {/* Private (authenticated) routes */}
+      {/* private */}
       <Route
         path="/"
         element={
@@ -31,12 +33,33 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/revenue"
+        element={
+          <ProtectedRoute>
+            <RevenueLedgerList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/revenue/new"
+        element={
+          <ProtectedRoute>
+            <RevenueLedgerCreate />
+          </ProtectedRoute>
+        }
+      />
 
-      {/* Optional: alias root to /login if not using dashboard */}
-      {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
+      <Route
+        path="/details"
+        element={
+          <ProtectedRoute>
+            <ClientDetails />
+          </ProtectedRoute>
+        }
+      />
 
-      {/* 404 */}
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
