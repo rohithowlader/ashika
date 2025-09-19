@@ -7,6 +7,7 @@ const rateLimit = require("express-rate-limit");
 const { connectDB } = require("./src/config/db");
 const authRoutes = require("./src/routes/auth.routes");
 const { notFound, errorHandler } = require("./src/middleware/errorHandler");
+const ledgerRoutes = require("./src/routes/ledger.routes");
 const cors = require("cors");
 const app = express();
 
@@ -49,6 +50,7 @@ app.use(limiter);
 
 // routes
 app.use("/api/auth", authRoutes);
+app.use("/api/ledger", ledgerRoutes);
 
 // health
 app.get("/health", (_req, res) => res.json({ ok: true }));
